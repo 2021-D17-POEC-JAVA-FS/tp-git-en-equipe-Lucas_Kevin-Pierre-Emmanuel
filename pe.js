@@ -16,10 +16,12 @@ function loadData(cryptoName) {
             document.querySelector('#cryptoImg').src = c.image.large;
 
             let cours = document.querySelector('#cours');
-            let p = document.createElement('p');
-            p.append(c.tickers[0].base + '/' + c.tickers[0].target + ' : ' + c.tickers[0].last);
-            cours.append(p);
-
+            cours.innerHTML = '';
+            c.tickers.forEach(t => {
+                let p = document.createElement('p');
+                p.append(t.base + '/' + t.target + ' : ' + t.last);
+                cours.append(p);
+            })
         })
         .catch(error => console.log('error', error));
 }
